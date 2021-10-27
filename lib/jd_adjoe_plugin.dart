@@ -8,7 +8,7 @@ class JdAdjoePlugin {
 
   ///初始化api
   ///其中sdkHash 设置app唯一哈希值， 为必须选项且必须适配
-  static Future<void> init(
+  Future<void> init(
       {@required String sdkHash, @required String userId, onInitialisationFinished: Function, onInitialisationError: Function}) async {
     _channel.setMethodCallHandler((MethodCall methodCall) {
       switch (methodCall.method) {
@@ -28,7 +28,7 @@ class JdAdjoePlugin {
   }
 
   ///设置 OfferWall 监听
-  static Future<void> setOfferWallListener({onOfferWallOpened: Function, onOfferWallClosed: Function}) async {
+  Future<void> setOfferWallListener({onOfferWallOpened: Function, onOfferWallClosed: Function}) async {
     _channel.setMethodCallHandler((MethodCall methodCall) {
       switch (methodCall.method) {
         case 'setOfferWallListener':
@@ -47,7 +47,7 @@ class JdAdjoePlugin {
   }
 
   ///展示OfferWall
-  static Future<void> showOfferWall({exceptionListener: Function}) async {
+  Future<void> showOfferWall({exceptionListener: Function}) async {
     _channel.setMethodCallHandler((MethodCall methodCall) {
       switch (methodCall.method) {
         case 'showOfferWall':
@@ -64,7 +64,7 @@ class JdAdjoePlugin {
   }
 
   ///检测是否初始化成功
-  static Future<bool> isInitialized() async {
+  Future<bool> isInitialized() async {
     return await _channel.invokeMethod('isInitialized');
   }
 }
